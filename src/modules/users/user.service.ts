@@ -12,6 +12,7 @@ const createUserIntoDB=async(payload:IUsers)=>{
         INSERT INTO users(name,email,password,age)
         VALUES($1,$2,$3,$4) RETURNING *
         `,[name,email,hashPassword,age])
+    delete result.rows[0].password
     return result
 }
 
