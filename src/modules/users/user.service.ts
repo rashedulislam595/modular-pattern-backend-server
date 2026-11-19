@@ -16,6 +16,23 @@ const createUserIntoDB=async(payload:IUsers)=>{
     return result
 }
 
+const getAllUserIntoDB = async()=>{
+    const result = await pool.query(`
+        SELECT id,name,email,age,is_active,created_at,updated_at FROM users
+        `)
+    return result
+}
+
+const getSingleUserIntoDB = async(id:string)=>{
+    const result = await pool.query(`
+    SELECT * FROM users WHERE id=$1
+        `,[id])
+    delete result.rows[0].password;
+    return result;
+}
+
 export const userServices ={
     createUserIntoDB,
+    getAllUserIntoDB,
+    getSingleUserIntoDB,
 }
