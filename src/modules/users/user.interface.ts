@@ -4,3 +4,9 @@ export interface IUsers{
     password:string,
     age:number
 }
+
+export interface IUpdateUser{
+    name:string,
+    age:number,
+    is_Active:boolean
+}
